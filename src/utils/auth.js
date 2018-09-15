@@ -25,9 +25,10 @@ const handleAuth = (callback) => {
       tokens.expiry = (new Date()).getTime() + authResult.expiresIn * 1000;
       userProfile = authResult.idTokenPayload;
       callback();
-		} else {
-			console.log(err);
 		}
+		// else {
+		// 	console.log(err);
+		// }
 	});
 };
 

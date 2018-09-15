@@ -11,10 +11,10 @@ export default {
   name: 'Callback',
   beforeMount() {
     MY_AUTH.handleAuth((err) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
+      // if (err) {
+      //   console.log(err);
+      //   return;
+      // }
 
       this.$router.push('/secret');
     });
