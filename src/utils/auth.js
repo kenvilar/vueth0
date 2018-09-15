@@ -33,6 +33,10 @@ const isLoggedIn = () => {
 	return (tokens.accessToken && (new Date()).getTime() < tokens.expiry);
 };
 
+const logout = () => {
+	tokens = {};
+};
+
 export default {
-	login, handleAuth, isLoggedIn
+	login, handleAuth, isLoggedIn, logout
 };

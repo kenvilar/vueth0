@@ -27,7 +27,11 @@ export default {
   },
   methods: {
     meLogin() {
-      MY_AUTH.login()
+      MY_AUTH.login();
+    },
+    meLogout() {
+      MY_AUTH.logout();
+      this.isLoggedIn = false;
     }
   }
 }
