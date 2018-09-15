@@ -2,6 +2,7 @@ const auth0 = require('auth0-js');
 require('dotenv').config();
 
 let tokens = {};
+let userProfile = {};
 
 const webAuth = new auth0.WebAuth({
 	domain: process.env.VUE_APP_AUTH0_DOMAIN,
@@ -22,11 +23,16 @@ const handleAuth = (callback) => {
 			tokens.accessToken = authResult.accessToken;
       tokens.idToken = authResult.idToken;
       tokens.expiry = (new Date()).getTime() + authResult.expiresIn * 1000;
+      userProfile = authResult.idTokenPayload;
       callback();
 		} else {
 			console.log(err);
 		}
 	});
+};
+
+const getProfile = () => {
+	return userProfile;
 };
 
 const isLoggedIn = () => {
@@ -38,5 +44,5 @@ const logout = () => {
 };
 
 export default {
-	login, handleAuth, isLoggedIn, logout
+	login, handleAuth, getProfile, isLoggedIn, logout
 };

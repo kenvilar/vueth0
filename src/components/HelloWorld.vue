@@ -6,7 +6,11 @@
       <button type="button" @click="meLogin">Login</button>
     </div>
     <div v-else>
-      <h2>You are logged in!</h2>
+      <h2>Hello, {{ userProfile.name }}! Welcome to the Admin Page!</h2>
+      <img alt="Profile Picture"
+           :src="userProfile.picture"
+           v-if="userProfile.picture !== null"
+           :style="imgWidth"> <br/>
       <button type="button" @click="meLogout">Logout</button>
     </div>
   </div>
@@ -23,6 +27,11 @@ export default {
   data: () => {
     return {
       isLoggedIn: MY_AUTH.isLoggedIn(),
+      userProfile: MY_AUTH.getProfile(),
+      imgWidth: {
+        'width': '10%',
+        'border-radius': '50%'
+      }
     };
   },
   methods: {
