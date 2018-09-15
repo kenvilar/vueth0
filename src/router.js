@@ -1,10 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home'
-import About from './views/About'
-import Secret from './views/Secret'
-import NotAuthorized from './views/NotAuthorized'
-import Callback from './views/Callback'
 
 import MY_AUTH from './utils/auth';
 
@@ -27,28 +22,28 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: () => import('./views/Home')
     },
     {
       path: '/about',
       name: 'about',
-      component: About
+      component: () => import('./views/About')
     },
     {
       path: '/secret',
       name: 'secret',
       beforeEnter: requireAuth,
-      component: Secret
+      component: () => import('./views/Secret')
     },
     {
       path: '/callback',
       name: 'callback',
-      component: Callback
+      component: () => import('./views/Callback')
     },
     {
       path: '/not-authorized',
       name: 'not-authorized',
-      component: NotAuthorized
+      component: () => import('./views/NotAuthorized')
     }
   ]
 })
