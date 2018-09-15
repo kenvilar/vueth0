@@ -1,19 +1,19 @@
+const auth0 = require('auth0-js');
 require('dotenv').config();
-import auth0 from 'auth0-js';
 
 const webAuth = new auth0.WebAuth({
-	domain: process.env.DOMAIN,
-	clientID: process.env.CLIENT_ID,
-	redirectUri: process.env.REDIRECT_URI,
-	//audience: process.env.AUDIENCE,
-	responseType: process.env.RESPONSE_TYPE,
-	scope: process.env.SCOPE
+	domain: process.env.VUE_APP_AUTH0_DOMAIN,
+	clientID: process.env.VUE_APP_AUTH0_CLIENT_ID,
+	redirectUri: process.env.VUE_APP_AUTH0_REDIRECT_URI,
+	audience: process.env.VUE_APP_AUTH0_AUDIENCE,
+	responseType: process.env.VUE_APP_AUTH0_RESPONSE_TYPE,
+	scope: process.env.VUE_APP_AUTH0_SCOPE
 });
 
 const login = () => {
 	webAuth.authorize();
 };
 
-export {
+export default {
 	login
 }
