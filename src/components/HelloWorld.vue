@@ -1,14 +1,25 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <div>
+      <h2>Not logged in yet?</h2>
+      <button type="button" @click="meLogin">Login</button>
+    </div>
   </div>
 </template>
 
 <script>
+import { login } from '../utils/auth';
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  methods: {
+  	meLogin() {
+        login();
+    }
   }
 }
 </script>
