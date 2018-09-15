@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { login } from '../utils/auth';
+import MY_AUTH from '../utils/auth';
 
 export default {
   name: 'HelloWorld',
@@ -17,8 +17,8 @@ export default {
     msg: String
   },
   methods: {
-  	meLogin() {
-        login();
+    meLogin() {
+      MY_AUTH.login()
     }
   }
 }
