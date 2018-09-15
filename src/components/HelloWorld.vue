@@ -1,9 +1,13 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <div>
+    <div v-if="!isLoggedIn">
       <h2>Not logged in yet?</h2>
       <button type="button" @click="meLogin">Login</button>
+    </div>
+    <div v-else>
+      <h2>You are logged in!</h2>
+      <button type="button" @click="meLogout">Logout</button>
     </div>
   </div>
 </template>
@@ -15,6 +19,11 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  data: () => {
+    return {
+      isLoggedIn: MY_AUTH.isLoggedIn(),
+    };
   },
   methods: {
     meLogin() {

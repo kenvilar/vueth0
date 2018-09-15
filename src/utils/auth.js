@@ -21,13 +21,18 @@ const handleAuth = (callback) => {
 		if (authResult && authResult.accessToken && authResult.idToken) {
 			tokens.accessToken = authResult.accessToken;
       tokens.idToken = authResult.idToken;
+      tokens.expiry = (new Date()).getTime() + authResult.expiresIn * 1000;
       callback();
 		} else {
 			console.log(err);
 		}
 	});
-}
+};
+
+const isLoggedIn = () => {
+	return (tokens.accessToken && (new Date()).getTime() < tokens.expiry);
+};
 
 export default {
-	login, handleAuth
-}
+	login, handleAuth, isLoggedIn
+};
