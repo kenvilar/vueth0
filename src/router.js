@@ -6,7 +6,19 @@ import Secret from './views/Secret'
 import NotAuthorized from './views/NotAuthorized'
 import Callback from './views/Callback'
 
+import MY_AUTH from './utils/auth';
+
 Vue.use(Router)
+
+function requireAuth(to, from, next) {
+  if (!MY_AUTH.isLoggedIn()) {
+    next({
+      path: '/not-authorized'
+    });
+  } else {
+    next();
+  }
+}
 
 export default new Router({
   mode: 'history',
@@ -25,6 +37,7 @@ export default new Router({
     {
       path: '/secret',
       name: 'secret',
+      beforeEnter: requireAuth,
       component: Secret
     },
     {
